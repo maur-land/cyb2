@@ -16,8 +16,8 @@
         $hash = hash("sha256", $pwd);
 
         //$conn = mysqli_connect("localhost:3306","root","","billing");
-        include("C:\\params\\billing.php");
-        $conn = mysqli_connect("$db_server","$db_user","$db_pwd","billing");
+        include("../../../params/billing.php");
+        $conn = mysqli_connect($db_server,$db_user,$db_pwd,"billing");
 
         //это было уязвимо, но проблема решена
         // $sql = "SELECT * FROM users WHERE Login = '$user' AND Pwdhash = '$hash' ";
