@@ -19,16 +19,19 @@
         include("C:\\params\\billing.php");
         $conn = mysqli_connect("$db_server","$db_user","$db_pwd","billing");
 
-        //это уязвимо, но проблема пока отложена
-        $sql = "SELECT * FROM users WHERE Login = '$user' AND Pwdhash = '$hash' ";
-        $query = mysqli_query($conn, $sql);
-        $result = mysqli_fetch_all($query);
+        //это было уязвимо, но проблема решена
+        // $sql = "SELECT * FROM users WHERE Login = '$user' AND Pwdhash = '$hash' ";
+        // $query = mysqli_query($conn, $sql);
+        // $result = mysqli_fetch_all($query);
 
-        // $sql = "SELECT * FROM users WHERE Login =? AND Pwdhash =? ";
-        // $statement = mysqli_prepare($conn, $sql);
-        // mysqli_stmt_bind_param($statement, "ss", $user, $hash);
-        // $cursor = mysqli_stmt_get_result($statement);
-        // $result = mysqli_fetch_all($cursur);
+        // Это довольно нудный код, но использование параметрического
+        // запроса избавляет от уязвимости SQL Injection
+        $sql = "SELECT * FROM users WHERE Login =? AND Pwdhash =? ";
+        $statement = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($statement, "ss", $user, $hash);
+        mysqli_stmt_execute($statement);
+        $cursor = mysqli_stmt_get_result($statement);
+        $result = mysqli_fetch_all($cursor);
         mysqli_close($conn);
         
         if(count($result) == 0)
