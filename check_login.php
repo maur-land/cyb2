@@ -16,7 +16,7 @@
         $hash = hash("sha256", $pwd);
 
         //$conn = mysqli_connect("localhost:3306","root","","billing");
-        include("../../../params/billing.php");
+        include("params/billing.php");
         $conn = mysqli_connect($db_server,$db_user,$db_pwd,"billing");
 
         //это было уязвимо, но проблема решена
