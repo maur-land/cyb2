@@ -17,7 +17,6 @@
         mysqli_query($conn, $sql);
         mysqli_close($conn);
         echo "Сейчас вы будете перенаправлены на главное меню.";
-        $_SESSION["user"] = $user;
         echo '<meta http-equiv="refresh" content="2; URL=index1.html"> ';
     ?>
 </body>
