@@ -1,5 +1,10 @@
 <?php
     session_start();
+    if (!isset($_SESSION["user"])) {
+        echo '<meta http-equiv="refresh" content="2; URL=login.php"> ';
+        die("Требуется логин!");
+
+    }
     $user = $_SESSION["user"];
 
     ?>
@@ -12,14 +17,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table {
+
+        width: 20%;
+        }
+        tr:nth-child(even) {
+            background-color : lightgray;
+        }
+        td {
+            text-align: right;
+        }
+        td:nth-child(3) {
+            text-align: center;
+        }
+
+        a {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        </style>
+        <script>
+                function toggleTable(){
+                if (document.getElementById("lnkToggle").innerText == "Спрятать")
+                {
+                    document.getElementById("tblCalcs").style.display = "none";
+                    document.getElementById("lnkToggle").innerText = "Показать";
+                }
+                else
+                {
+                    document.getElementById("tblCalcs").style.display = "";
+                    document.getElementById("lnkToggle").innerText = "Спрятать"; 
+                }
+
+                }
+        </script>    
 </head>
 <body>
+    <a href="index1.html">Индекс</a>
 
 <?php
 echo "<h1>Твой счет, $user! </h1>";
 
 ?>
-    <table border ="1">
+    <a  onclick="toggleTable();" id= "lnkToggle">Спрятать</a>
+    <table border ="1" id= "tblCalcs">
+
+    <tr>
+        <th>Первое число</th>
+        <th>Второе число</th>
+        <th>Операция</th>
+    </tr>
 
     <?php
      include("params/billing.php");
@@ -38,7 +87,7 @@ echo "<h1>Твой счет, $user! </h1>";
      for ($i=0; $i < count($result); $i++) {
         echo "<tr>";
         echo"<td>".$result[$i][1]."</td><td>".$result[$i][2]."</td><td>".$result[$i][3]."</td>";
-        echo "</tr";
+        echo "</tr>";
      }
     ?>
     </table>
