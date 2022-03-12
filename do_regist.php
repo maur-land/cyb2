@@ -16,8 +16,8 @@
         $sql = "INSERT INTO users(Login, Pwdhash) VALUES('$user', '$hash')";
         mysqli_query($conn, $sql);
         mysqli_close($conn);
-        echo "Сейчас вы будете перенаправлены на главное меню.";
-        echo '<meta http-equiv="refresh" content="2; URL=index1.html"> ';
+        echo "Сейчас вы будете перенаправлены на cраницу логина.";
+        echo '<meta http-equiv="refresh" content="2; URL=login.php"> ';
     ?>
 </body>
 </html>
