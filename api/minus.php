@@ -15,7 +15,6 @@ date_default_timezone_set('Europe/Moscow');
 $nowTime = date("Y-m-d H:i:s");
 
 $sql = "INSERT INTO calcs(Number1, Number2, Operation, User, TimesTamp) VALUES($x, $y, 'minus', '$user', '$nowTime')";
-//echo $sql;
 mysqli_query($conn, $sql);
 
 mysqli_close($conn);
