@@ -6,9 +6,6 @@
     <body>
     <a href="index1.html">Главное меню</a>
         <?php
-    
-            //date_default_timezone_set("Europe/Moscow");
-            date_default_timezone_set("Asia/Tokyo");
             $hour = date("H");
             if ($hour < 5)
                 echo "<h1>Доброй ночи!</h1>";
